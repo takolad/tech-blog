@@ -1,0 +1,10 @@
+<section class="card">
+  <a href="/blog/{{id}}">
+    <header>{{title}} {{date_created}}</header>
+    {{#if content.length < 300}}
+    {{content}}
+    {{else}}
+    {{ limitChars content }}
+    {{/if}}
+  </a>
+</section>
