@@ -1,10 +1,7 @@
 <section class="card">
+  BLOG DETAILS
   <a href="/blog/{{id}}">
-    <header>{{title}} {{date_created}}</header>
-    {{#if content.length < 300}}
-    {{content}}
-    {{else}}
+    <header>{{title}} {{format_date date_created}}</header>
     {{ limitChars content }}
-    {{/if}}
   </a>
 </section>

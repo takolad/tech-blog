@@ -1,0 +1,13 @@
+<section class="container">
+    BLOG!
+<header>
+    <span class="blog-title">{{blog.title}}</span>
+    <span class="blog-date">{{format_date blog.date_created}}</span>
+</header>
+<p>{{blog.content}}</p>
+</section>
+<section class="comments">
+    {{#each comments as |comment|}}
+    {{> comment-details}}
+    {{/each}}
+</section>

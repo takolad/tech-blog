@@ -1,15 +1,12 @@
 <section class="container">
-  <h3 class="blog-title">{{blog.title}}</h3>
-  <h4>{{blog.date_created}}</h4>
-  <!-- If the user is logged in, render the gallery content -->
+  DASHBOARD
+  <!-- If the user is logged in, render their blogs content -->
   {{#if loggedIn}}
-  <section class="flex-row justify-center">
-    {{#each gallery.paintings as |painting|}}
-    {{> painting-details}}
+    {{#each blogs as |blog|}}
+    {{> blog-details}}
     {{/each}}
-  </section>
 </section>
 <!-- Otherwise, provide a link to login -->
 {{else}}
-<a href="/login">You must login first to view the paintings</a>
+<a href="/login">You must login first to view your dashboard</a>
 {{/if}}
