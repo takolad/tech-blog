@@ -12,4 +12,7 @@ module.exports = {
     format_date: (date) => {
         return `${new Date(date).toLocaleDateString()}`
     },
+    log: (object) => {
+        console.log(object);
+    }
 };

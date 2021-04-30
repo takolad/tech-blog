@@ -1,7 +1,11 @@
 <section class="card">
   COMMENT DETAILS
-  <a href="/comment/{{id}}">
-    <header>{{user.id}} {{format_date date_created}}</header>
-    {{ message }}
-  </a>
+  {{!-- <a href="/comment/{{id}}"> --}}
+  {{id}}
+  <header>
+    <span class="comment-user">{{user.username}}</span>
+    <span class="comment-date">{{format_date date_created}}</span>
+  </header>
+  {{ message }}
+{{!-- </a> --}}
 </section>

@@ -35,26 +35,36 @@ router.get('/', async (req, res) => {
 // GET one blog
 router.get('/blog/:id', async (req, res) => {
   try {
+    // breaks when no comments
     const blogData = await Blog.findByPk(req.params.id, {
       include: [
+        {
+          model: User,
+          attributes: [
+            'username',
+          ],
+        },
         {
           model: Comment,
           where: {
             blog_id: req.params.id,
           },
-        },
-        {
-          model: User,
-          attributes: {
-            exclude: ['password'],
-          },
+          include: [
+            {
+              model: User,
+              attributes: [
+                'username'
+              ],
+            },
+          ],
         },
       ],
     });
 
+    
     const blog = blogData.get({ plain: true });
-    // Send over the 'loggedIn' session variable to the 'blog' template
-    res.render('blog', { blog, loggedIn: req.session.loggedIn });
+    console.log(blog);
+    res.render('blog', { blog });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -62,26 +72,32 @@ router.get('/blog/:id', async (req, res) => {
 });
 
 // GET blogs by user_id
-router.get('/dashboard/', async (req, res) => {
+router.get('/dashboard/', withAuth, async (req, res) => {
   try {
     if (req.session.logged_in) {
-      const blogData = await Blog.findByPk(req.session.user_id, {
+      const blogData = await Blog.findAll({
+        where: {
+          user_id: req.session.user_id,
+        },
         include: [
           {
             model: Comment,
-            attributes: [
-              'id',
-              'content',
-              'date',
-              'user_id',
-            ],
+            attributes: {
+              exclude: ['id'],
+            },
+          },
+          {
+            model: User,
+            attributes: {
+              exclude: ['password'],
+            },
           },
         ],
       });
 
       const blog = blogData.get({ plain: true });
       // Send over the 'loggedIn' session variable to the 'blog' template
-      res.render('homepage', { blog, loggedIn: req.session.loggedIn });
+      res.render('dashboard', { blog, loggedIn: req.session.loggedIn });
     }
 
 
@@ -112,6 +128,15 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
 });
 
 module.exports = router;
