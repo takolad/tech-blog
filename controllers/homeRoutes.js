@@ -35,7 +35,6 @@ router.get('/', async (req, res) => {
 // GET one blog
 router.get('/blog/:id', async (req, res) => {
   try {
-    // breaks when no comments
     const blogData = await Blog.findByPk(req.params.id, {
       include: [
         {
@@ -66,7 +65,7 @@ router.get('/blog/:id', async (req, res) => {
     const blog = blogData.get({ plain: true });
 
     res.render('blog', {
-      ...blog, 
+      blog, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
