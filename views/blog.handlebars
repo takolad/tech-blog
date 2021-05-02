@@ -1,11 +1,9 @@
 <section class="container blog-section">
-    BLOG!
     <header>
         <span class="blog-title">{{blog.title}}</span>
-        <span class="blog-poster">Posted by: {{blog.user.username}}</span>
+        <span class="blog-info">Posted by: {{blog.user.username}} {{format_date blog.date_created}}</span>
     </header>
     <p class="blog-content">{{blog.content}}</p>
-    <span class="blog-date">Posted: {{format_date blog.date_created}}</span>
 </section>
 <section class="comments">
     {{#each blog.comments as |comment|}}

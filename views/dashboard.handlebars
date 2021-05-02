@@ -1,7 +1,7 @@
 <section class="container">
   DASHBOARD
   <!-- If the user is logged in, render their blogs content -->
-  {{#if loggedIn}}
+  {{#if logged_in}}
     {{#each blogs as |blog|}}
     {{> blog-details}}
     {{/each}}

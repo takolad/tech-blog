@@ -49,6 +49,7 @@ router.get('/blog/:id', async (req, res) => {
           where: {
             blog_id: req.params.id,
           },
+          required: false,
           include: [
             {
               model: User,
@@ -63,46 +64,41 @@ router.get('/blog/:id', async (req, res) => {
 
     
     const blog = blogData.get({ plain: true });
-    console.log(blog);
-    res.render('blog', { blog });
+
+    res.render('blog', {
+      ...blog, 
+      logged_in: req.session.logged_in 
+    });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 
 // GET blogs by user_id
-router.get('/dashboard/', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
-    if (req.session.logged_in) {
-      const blogData = await Blog.findAll({
-        where: {
-          user_id: req.session.user_id,
+      const userData = await User.findbyPk(req.session.user_id, {
+        attributes: {
+          exclude: ['password'],
         },
         include: [
+          {
+            model: Blog,
+          },
           {
             model: Comment,
             attributes: {
               exclude: ['id'],
             },
-          },
-          {
-            model: User,
-            attributes: {
-              exclude: ['password'],
-            },
+            required: false,
           },
         ],
       });
 
-      const blog = blogData.get({ plain: true });
-      // Send over the 'loggedIn' session variable to the 'blog' template
-      res.render('dashboard', { blog, loggedIn: req.session.loggedIn });
-    }
-
-
+      const user = userData.get({ plain: true });
+      // Send over the 'logged_in' session variable to the 'blog' template
+      res.render('dashboard', { ...user, logged_in: true });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -113,17 +109,17 @@ router.get('/comment/:id', async (req, res) => {
     const commentData = await Comment.findByPk(req.params.id);
 
     const comment = commentData.get({ plain: true });
-    // Send over the 'loggedIn' session variable to the 'homepage' template
-    res.render('comment', { comment, loggedIn: req.session.loggedIn });
+    // Send over the 'logged_in' session variable to the 'homepage' template
+    res.render('comment', { ...comment, logged_in: req.session.logged_in });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
 
+// Login route
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
@@ -132,7 +128,7 @@ router.get('/login', (req, res) => {
 
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/');
+    res.redirect('/dashboard');
     return;
   }
 
