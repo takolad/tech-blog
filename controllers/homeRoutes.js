@@ -61,43 +61,33 @@ router.get('/blog/:id', async (req, res) => {
       ],
     });
 
-    
+
     const blog = blogData.get({ plain: true });
 
     res.render('blog', {
-      blog, 
-      logged_in: req.session.logged_in 
+      blog,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// GET blogs by user_id
+// GET user's blogs
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
-      const userData = await User.findbyPk(req.session.user_id, {
-        attributes: {
-          exclude: ['password'],
-        },
-        include: [
-          {
-            model: Blog,
-          },
-          {
-            model: Comment,
-            attributes: {
-              exclude: ['id'],
-            },
-            required: false,
-          },
-        ],
-      });
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Blog}],
+    });
 
-      const user = userData.get({ plain: true });
-      // Send over the 'logged_in' session variable to the 'blog' template
-      res.render('dashboard', { ...user, logged_in: true });
+    const user = userData.get({ plain: true });
+
+    // Send over the 'logged_in' session variable to the 'user' template
+    res.render('dashboard', { ...user, logged_in: true });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -105,11 +95,20 @@ router.get('/dashboard', withAuth, async (req, res) => {
 // GET one comment
 router.get('/comment/:id', async (req, res) => {
   try {
-    const commentData = await Comment.findByPk(req.params.id);
+    const commentData = await Comment.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          exclude: [
+            'password'
+          ],
+        },
+      ],
+    });
 
     const comment = commentData.get({ plain: true });
     // Send over the 'logged_in' session variable to the 'homepage' template
-    res.render('comment', { ...comment, logged_in: req.session.logged_in });
+    res.render('comment', { ...comment, logged_in: req.session.logged_in, sess_user: req.session.user_id });
   } catch (err) {
     res.status(500).json(err);
   }

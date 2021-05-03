@@ -14,5 +14,15 @@ module.exports = {
     },
     log: (object) => {
         console.log(object);
+    },
+    isOriginalPoster: (blogUserId, sessionUser) => {
+        console.log('blog: ' + blogUserId);
+        console.log('session: ' + sessionUser);
+        if (!blogUserId || !sessionUser) {
+            return false;
+        }
+        if (blogUserId === sessionUser) {
+            return true;
+        } else return false;
     }
 };

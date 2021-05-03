@@ -1,6 +1,8 @@
-<section class="card">
+<section class="card dash-card">
   <a href="/blog/{{id}}">
     <header>{{title}} {{format_date date_created}}</header>
-    {{ limitChars content }}
+    <div class = "card-body">
+      {{ limitChars content }}
+    </div>
   </a>
 </section>
