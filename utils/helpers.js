@@ -16,8 +16,6 @@ module.exports = {
         console.log(object);
     },
     isOriginalPoster: (blogUserId, sessionUser) => {
-        console.log('blog: ' + blogUserId);
-        console.log('session: ' + sessionUser);
         if (!blogUserId || !sessionUser) {
             return false;
         }

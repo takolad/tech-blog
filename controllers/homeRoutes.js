@@ -6,12 +6,7 @@ router.get('/', async (req, res) => {
   try {
     const blogData = await Blog.findAll({
       include: [
-        {
-          model: Comment,
-          attributes: {
-            exclude: ['id'],
-          },
-        },
+        { model: Comment },
         {
           model: User,
           attributes: {
@@ -40,7 +35,7 @@ router.get('/blog/:id', async (req, res) => {
         {
           model: User,
           attributes: [
-            'username',
+            'username', 'id',
           ],
         },
         {
@@ -66,7 +61,8 @@ router.get('/blog/:id', async (req, res) => {
 
     res.render('blog', {
       blog,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
+      userID: req.session.user_id
     });
   } catch (err) {
     res.status(500).json(err);
