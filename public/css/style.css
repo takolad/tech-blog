@@ -148,7 +148,7 @@ img {
   text-transform: uppercase;
   letter-spacing: .25rem;
   text-shadow: 2px 2px 5px var(--secondary);
-  border: .25rem solid var(--light);
+  /* border: .25rem solid var(--light); */
   padding: .5rem;
 }
 
@@ -183,6 +183,8 @@ img {
 .blog-info {
   flex: auto;
   text-align: right;
+  align-self: center;
+  text-transform: none;
 }
 
 .blog-content {
@@ -232,4 +234,8 @@ img {
 .add-comment {
   width: 50%;
   margin: 0 auto;
+}
+
+.comment-info {
+  text-align: end;
 }

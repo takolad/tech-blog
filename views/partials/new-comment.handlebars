@@ -1,6 +1,7 @@
 <div class="comment-card">
+{{#if logged_in}}
   <h2 class="page-title">Add Comment</h2>
-  <form class="form comment-form">
+  <form class="form comment-form" autocomplete="off">
     <div class="form-group">
       <label for="comment-field">Comment:</label>
       <input class="form-input" type="textfield" id="comment-field" />
@@ -12,3 +13,6 @@
 </div>
 
 <script src="/js/comment.js"></script>
+{{else}}
+<p class="text-center"><a href="/login">Login</a> to leave a comment</p>
+{{/if}}

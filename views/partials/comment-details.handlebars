@@ -1,8 +1,8 @@
 <section class="card comment-card">
   <a href="/comment/{{id}}">
-  <header>
-    <span class="comment-user">{{user.username}}</span>
-    <span class="comment-date">{{format_date date_created}}</span>
+  <header class="comment-info">
+      <span class="comment-user">{{user.username}}</span>
+      <span class="comment-date">{{format_date date_created}}</span>
   </header>
   <p class="card-body comment-message">
     {{ message }}
