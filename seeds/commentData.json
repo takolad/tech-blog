@@ -1,0 +1,33 @@
+[
+    {
+      "message": "Yes to the title 100, not exactly sure I grasp your message though",
+      "user_id": 2,
+      "blog_id": 1
+    },
+    {
+      "message": "Mood",
+      "user_id": 3,
+      "blog_id": 1
+    },
+    {
+      "message": "I'm sure Japan has them in a bunker somewhere.",
+      "user_id": 1,
+      "blog_id": 2
+    },
+    {
+      "message": "Mood dude. MUDE! Mooude? Yeah!",
+      "user_id": 2,
+      "blog_id": 3
+    },
+    {
+      "message": "All the time my friend, all of the time",
+      "user_id": 1,
+      "blog_id": 4
+    },
+    {
+      "message": "Same thing happend to my cousin Mikey, he changed drastically",
+      "user_id": 1,
+      "blog_id": 5
+    }
+  ]
+  

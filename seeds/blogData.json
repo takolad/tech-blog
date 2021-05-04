@@ -1,0 +1,28 @@
+[
+    {
+      "title": "Coding is difficult, yet fun",
+      "content": "Nam malesuada, lacus a tempus feugiat, augue arcu eleifend sem, eget varius dolor diam eu massa. Aenean imperdiet vel dolor ac porta. Quisque sodales auctor tellus, vel suscipit dui gravida ut. In hac habitasse platea dictumst. Aenean id metus enim. Pellentesque consequat mauris sit amet finibus cursus. Aliquam imperdiet dolor odio, sit amet consequat nisl tincidunt sed. Nunc varius placerat risus sed egestas. Quisque non ligula augue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla tellus eros, elementum sit amet lobortis in, ultricies nec orci. Nam suscipit elementum metus, non euismod nisl sodales eget. In a felis felis. Proin vulputate arcu ut magna tincidunt convallis eu non lorem.",
+      "user_id": 1
+    },
+    {
+      "title": "Nuclear Walking Battle Tanks",
+      "content": "It's 202X, where are all the rail-gun equipped walking battle tanks I was promised? What the world needs now, more than ever, is some good old fashioned deterrence.",
+      "user_id": 2
+    },
+    {
+      "title": "Keys to open doors",
+      "content": "Someone once told me to use keys to open doors, that guidance was as helpful as \"It's dangerous to go alone...\" yada yada yada, eternal battle between light and dark",
+      "user_id": 3
+    },
+    {
+      "title": "How do I know when I'm satisfied?",
+      "content": "Ya'll ever read a blog so bad you are forced to immediately go to sleep?",
+      "user_id": 1
+    },
+    {
+      "title": "I think I'm being norted",
+      "content": "I've been having these weird dreams lately, like is any of it real || !",
+      "user_id": 2
+    }
+  ]
+  
