@@ -152,6 +152,11 @@ img {
   padding: .5rem;
 }
 
+#blog-title {
+  color: var(--light);
+  text-shadow: .15rem .15rem seagreen;
+}
+
 /* LAYOUT */
 .container {
   display: flex;
@@ -222,4 +227,9 @@ img {
 
 .comments {
   margin-left: auto;
+}
+
+.add-comment {
+  width: 50%;
+  margin: 0 auto;
 }

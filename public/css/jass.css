@@ -35,6 +35,7 @@ main {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+  text-shadow: -.15rem -.10rem black;
 }
 
 /* Grouping content
@@ -1254,6 +1255,7 @@ form [type='radio'] {
   flex-direction: row;
   margin-left: -15px;
   margin-right: -15px;
+  width: 100%;
 }
 
 [class*='col-'] {
