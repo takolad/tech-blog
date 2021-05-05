@@ -1,12 +1,27 @@
 <section class="card comment-card comment-section">
+    {{#if (isOriginalPoster user.id sess_user)}}
+    <header>
+        <span class="comment-info">Comment by: {{user.username}} {{format_date date_created}}</span>
+    </header>
+    <div class="update-comment pl-5 pr-5">
+        <form class="form comment-update-form" autocomplete="off">
+            <div class="form-group">
+                <label class= "m-0" for="comment-field">Update comment:</label>
+                <input class="form-input" type="textfield" id="comment-field" value="{{ message }}" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-sm btn-primary" comm-id="{{id}}" blog-id="{{blog.id}}" id="comment-update">Update</button>
+                <button class="btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
+            </div>
+        </form>
+    </div>
+
+
+    {{else}}
     <header>
         <span class="comment-info">Comment by: {{user.username}} {{format_date date_created}}</span>
     </header>
     <p class="comment-message">{{message}}</p>
-    {{#if (isOriginalPoster user.id sess_user)}}
-        <div class="col-md-4">
-          <button class="btn btn-sm btn-danger" data-id="{{id}}">DELETE</button>
-        </div>
     {{/if}}
 </section>
 
