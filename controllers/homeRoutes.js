@@ -83,7 +83,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
     // Send over the 'logged_in' session variable to the 'user' template
     res.render('dashboard', { ...user, logged_in: true });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -98,6 +97,9 @@ router.get('/comment/:id', async (req, res) => {
           exclude: [
             'password'
           ],
+        },
+        {
+          model: Blog,
         },
       ],
     });

@@ -2,9 +2,8 @@ const commentBtnEl = document.getElementById('comment-submit');
 
 const newFormHandler = async (event) => {
   event.preventDefault();
-
   const message = document.querySelector('#comment-field').value.trim();
-  const blog_id = commentBtnEl.getAttribute('data-comm-id');
+  const blog_id = commentBtnEl.getAttribute('data-blog-id');
   const user_id = commentBtnEl.getAttribute('data-user-id');
 
   if (message && blog_id && user_id) {
@@ -24,6 +23,29 @@ const newFormHandler = async (event) => {
   }
 };
 
+const updateButtonHandler = async (event) => {
+  const message = document.querySelector('#comment-field').value.trim();
+  if (event.target.hasAttribute('comm-id')) {
+    const id = event.target.getAttribute('comm-id');
+    const blog_id = event.target.getAttribute('blog-id');
+
+    const response = await fetch(`/api/comments/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ message }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.ok) {
+      document.location.replace(`/blog/${blog_id}`);
+    } else {
+      alert('Failed to update comment');
+    }
+  }
+};
+
+
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
@@ -40,11 +62,17 @@ const delButtonHandler = async (event) => {
   }
 };
 
-let commentList = document.querySelector('.comment-form');
-if (commentList) {
-  commentList.addEventListener('submit', newFormHandler);
+let commentFormEl = document.querySelector('.comment-form');
+if (commentFormEl) {
+  commentFormEl.addEventListener('submit', newFormHandler);
 }
 
-document
-  .querySelector('.comment-card')
-  .addEventListener('click', delButtonHandler);
+let commUpdateFormEl = document.querySelector('.btn-primary');
+if (commUpdateFormEl) {
+  commUpdateFormEl.addEventListener('click', updateButtonHandler);
+}
+
+let deleteBtnEl = document.querySelector('.btn-danger');
+if (deleteBtnEl) {
+  deleteBtnEl.addEventListener('click', delButtonHandler);
+}
