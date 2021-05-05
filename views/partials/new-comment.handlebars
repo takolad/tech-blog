@@ -4,7 +4,7 @@
   <form class="form comment-form" autocomplete="off">
     <div class="form-group">
       <label for="comment-field">Comment:</label>
-      <input class="form-input" type="textfield" id="comment-field" />
+      <input class="form-input" type="textfield" id="comment-field" maxlength="512"/>
     </div>
     <div class="form-group">
       <button class="btn btn-sm btn-primary" id="comment-submit" data-user-id="{{userID}} "data-blog-id="{{blog.id}}">Comment</button>

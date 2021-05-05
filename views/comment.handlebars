@@ -7,7 +7,7 @@
         <form class="form comment-update-form" autocomplete="off">
             <div class="form-group">
                 <label class= "m-0" for="comment-field">Update comment:</label>
-                <input class="form-input" type="textfield" id="comment-field" value="{{ message }}" />
+                <input class="form-input" type="textfield" id="comment-field" maxlength="512" value="{{ message }}" />
             </div>
             <div class="form-group">
                 <button class="btn btn-sm btn-primary" comm-id="{{id}}" blog-id="{{blog.id}}" id="comment-update">Update</button>
