@@ -1,6 +1,5 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
-    // THIS SHOULD BE #title-input HEROKU TEST
     const title = document.querySelector('#title-input').value.trim();
     const content = document.querySelector('#blog-content').value.trim();
   
