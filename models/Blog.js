@@ -23,6 +23,9 @@ Blog.init(
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
+      validate: {
+        isDate: true,
+      }
     },
     user_id: {
       type: DataTypes.INTEGER,

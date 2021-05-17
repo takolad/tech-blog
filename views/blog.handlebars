@@ -3,7 +3,21 @@
         <span class="blog-title">{{blog.title}}</span>
         <span class="blog-info">Posted by: {{blog.user.username}} {{format_date blog.date_created}}</span>
     </header>
-    <p class="blog-content">{{blog.content}}</p>
+    {{#if (isOriginalPoster blog.user.id userID) }}
+        <div class="blog-content">
+            <form class="form blog-update-form" autocomplete="off">
+            <div class="form-group">
+                <label class= "m-0" for="blog-field">Update blog:</label>
+                <input class="form-input" type="textfield" id="blog-field" value="{{ blog.content }}" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-sm btn-primary" comm-id="{{user.id}}" blog-id="{{blog.id}}" id="comment-update">Update</button>
+            </div>
+        </form>
+        </div>
+    {{else}}
+        <p class="blog-content">{{blog.content}}</p>
+    {{/if}}
 </section>
 <section class="comments">
     {{#each blog.comments as |comment|}}
